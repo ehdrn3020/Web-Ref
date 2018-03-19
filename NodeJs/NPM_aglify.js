@@ -12,3 +12,7 @@ hello('hidg')
 # $ aglifyjs hello.js //코드상의 실행 외에 필요없는 데이터삭제
 # $ aglifyjs hello.js -m //코스상의 변경해도 되는 변수명까지 적절히 정제하여 데이터절감
 # $ aglifyjs hello.js -o hello.min.js -m //aglify를 hello.min.js에 저장
+
+
+# npm은 node.exe와설치되는경로가 다르다.  Windows- C:\Users\DG\AppData\Local\atom\app-1.25.0\resources\app
+# check : node -v && npm -v
