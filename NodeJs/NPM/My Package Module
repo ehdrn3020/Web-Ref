@@ -1,1 +1,9 @@
-we
+#npm모듈을 패키징 할 디렉토리를 설정
+cmd> npm init
+
+#package.json 파일이 생성됨
+
+#npm옵션인--save와함께install을하면
+cmd> npm install underscore --save
+
+#package.json파일의 dependencies에 undersocre의 의존성을 나타내는 코멘트가 추가됨
