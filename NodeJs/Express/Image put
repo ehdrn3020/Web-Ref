@@ -1,0 +1,18 @@
+var express = require('express');
+var app = express();
+
+//put the image in img directory
+//app.use(express.static('img2'));
+app.use(express.static('img'));
+
+app.get('/', function (req, res){
+  res.send('hello world!');
+});
+
+app.get('/img', function(req, res){
+  res.send('hellow, <img src ="/test.jpg"><img src ="/test2.jpg">')
+
+})
+app.listen(3000, function(){
+  console.log("ex listening 3000 port!");
+});
