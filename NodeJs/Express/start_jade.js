@@ -14,7 +14,7 @@ app.get('/', function (req, res){
   res.send('hello world!');
 });
 app.get('/template', function(req, res){
-  res.render('temp',{time:Date()});
+  res.render('temp',{time:Date(), _jade:'hello'});
 });
 app.listen(3000, function(){
   console.log("ex listening 3000 port!");
@@ -23,7 +23,8 @@ app.listen(3000, function(){
 
 [temp.jade]
 html
-  head Kang.DG
+  head
+    title= _jade
   body
     h1 hello & jade
     ul
