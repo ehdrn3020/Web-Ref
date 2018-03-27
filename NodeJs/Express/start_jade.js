@@ -14,7 +14,7 @@ app.get('/', function (req, res){
   res.send('hello world!');
 });
 app.get('/template', function(req, res){
-  res.render('temp');
+  res.render('temp',{time:Date()});
 });
 app.listen(3000, function(){
   console.log("ex listening 3000 port!");
@@ -29,3 +29,4 @@ html
     ul
       - for(var i=0; i<3; i++)
         li coding jade
+    div= time
