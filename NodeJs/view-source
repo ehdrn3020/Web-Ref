@@ -1,0 +1,4 @@
+###view-source command###
+
+#ex] view-source:https://github.com/ehdrn3020/Web-Ref/tree/master/NodeJs
+#nodejs code : app.locals.pretty = true;
