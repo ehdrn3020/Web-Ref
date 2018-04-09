@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+  function myF(){
+    document.getElementById("demo").innerHTML = "page changed";
+  }
+</script>
+</head>
+
+<body>
+<h2>JavaScript in Body</h2>
+<p id="demo">hellow</p>
+<button type="button" onclick="myF()">Try it</button>
+</body>
+</html>
