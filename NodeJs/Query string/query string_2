@@ -1,0 +1,21 @@
+var express = require('express');
+var app = express();
+app.set('view engine', 'jade');
+app.set('views','./views')
+app.locals.pretty = true;
+
+
+
+app.get('/topic', function (req, res){
+  var topics = ['JavaScript is ..','NodeJs is ...', 'Express is ...'];
+  var output =
+  `<a href="/topic?id=0">JavaScript</a><br>
+  <a href="/topic?id=1">NodeJs</a><br>
+  <a href="/topic?id=2">Express</a><br><br>
+  ${topics[req.query.id]}`
+  res.send(output);
+});
+
+app.listen(3000, function(){
+  console.log("ex listening 3000 port!");
+});
