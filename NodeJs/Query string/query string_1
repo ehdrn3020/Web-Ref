@@ -1,0 +1,17 @@
+var express = require('express');
+var app = express();
+app.set('view engine', 'jade');
+app.set('views','./views')
+app.locals.pretty = true;
+
+app.get('/topic', function (req, res){
+  res.send(req.query.id+','+req.query.name);
+});
+
+app.listen(3000, function(){
+  console.log("ex listening 3000 port!");
+});
+
+
+URL
+http://localhost:3000/topic?id=3&name=kang
