@@ -1,13 +1,18 @@
+cmd: npm install body-parser
+
 [module.js]
 var express = require('express');
+var bodyParser = require('body-parser');
+
 var app = express();
+app.use(bodyParser.urlencoded({extended: false}))
 app.set('view engine', 'jade');
 app.set('views','./views')
 app.locals.pretty = true;
-
 app.get('/form', function (req, res){
   res.render('form');
 });
+
 app.get('/form_receiver', function(req,res){
   var title = req.query.title;
   var des = req.query.des;
