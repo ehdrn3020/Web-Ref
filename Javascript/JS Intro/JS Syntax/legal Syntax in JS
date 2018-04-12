@@ -1,0 +1,16 @@
+1]JavaScript Identifiers
+
+Identifiers are names.
+In JavaScript, identifiers are used to name variables (and keywords, and functions, and labels).
+The rules for legal names are much the same in most programming languages.
+In JavaScript, the first character must be a letter, or an underscore (_), or a dollar sign ($).
+
+
+2]Lower Camel Case:
+
+JavaScript programmers tend to use camel case that starts with a lowercase letter:
+Ex: firstName, lastName, masterCard, interCity.
+
+
+3]JavaScript Character Set
+JavaScript uses the Unicode character set.
