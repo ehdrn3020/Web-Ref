@@ -1,0 +1,13 @@
+#jQuery Syntax
+Basic syntax is $(selector).action()
+- $(this).hide() : hide the current element.
+- $("p").hide() : hides all <p> elements.
+- $(".test").hide() : hides all elements with class = "test".
+- $("#test").hide() : hides the element with id = "test".
+
+
+#The Document Ready Event
+You might have noticed that all jQuery methods in our examples, are inside a document ready event:
+$(document).ready(function(){
+   // jQuery methods go here...
+});
