@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Variables</h2>
+<p>Create a variable, assign a value to it, and display it:</p>
+<p id="demo"></p>
+
+<script>
+var carName = "Volvo";
+document.getElementById("demo").innerHTML = carName;
+</script>
+
+</body>
+</html>
+
+
+
+#Increase Variable 'y' + 5
+<!DOCTYPE html>
+<html>
+<head>
+  <script>var y = -20;</script>
+</head>
+
+<body>
+<h2>JavaScript in Body</h2>
+<p id="demo"></p>
+<script>
+  function myF(){
+     y = y + 5;
+     document.getElementById('demo').innerHTML = y;
+  }
+</script>
+<button type="button" onclick="myF()">Try it</button>
+</body>
+</html>
+
+
+
+#Re-Declaring JavaScript Variables
+If you re-declare a JavaScript variable, it will not lose its value.
+The variable carName will still have the value "Volvo" after the execution of these statements:
+
+Example
+var carName = "Volvo";
+var carName;
