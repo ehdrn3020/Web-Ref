@@ -1,0 +1,80 @@
+#JavaScript Types are Dynamic.
+JavaScript has dynamic types. This means that the same variable can be used to hold different data types:
+Example
+var x;           // Now x is undefined
+x = 5;           // Now x is a Number
+x = "John";      // Now x is a String
+
+
+#JavaScript Numbers
+Extra large or extra small numbers can be written with scientific (exponential) notation:
+Example
+var y = 123e5;      // 12300000
+var z = 123e-5;     // 0.00123
+
+
+#JavaScript Booleans
+Booleans can only have two values: true or false.
+Example
+var x = 5;
+var y = 5;
+var z = 6;
+(x == y)       // Returns true
+(x == z)       // Returns false
+
+
+#JavaScript Arrays
+Example
+var cars = [ "Saa", "Dew", "Bsess"];
+cars[1] //"Dew"
+
+
+#JavaScript Objects
+Example
+var person = { firstName:"John", lastName:"Doe", age:50 };
+person.lastName //"Doe"
+
+
+#The typeof Operator
+Example
+typeof 0                   // Returns "number"
+typeof 314                 // Returns "number"
+
+
+#Undefined
+In JavaScript, a variable without a value, has the value undefined. The typeof is also undefined.
+Example
+var car;                // Value is undefined, type is undefined
+car = undefined;        // Value is undefined, type is undefined
+
+
+#Null
+In JavaScript null is "nothing". It is supposed to be something that doesn't exist.
+Unfortunately, in JavaScript, the data type of null is an object.
+Example
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+person = null;        // Now value is null, but type is still an object
+
+typeof undefined           // undefined
+typeof null                // object
+null === undefined         // false
+null == undefined          // true
+
+
+#Summary
+Primitive Data
+A primitive data value is a single simple data value with no additional properties and methods.
+Example
+typeof "John"              // Returns "string" 
+typeof 3.14                // Returns "number"
+typeof true                // Returns "boolean"
+typeof false               // Returns "boolean"
+typeof x                   // Returns "undefined" (if x has no value)
+
+Complex Data
+The typeof operator returns object for both objects, arrays, and null.
+Example
+typeof {name:'John', age:34} // Returns "object"
+typeof [1,2,3,4]             // Returns "object" (not "array", see note below)
+typeof null                  // Returns "object"
+typeof function myFunc(){}   // Returns "function"
