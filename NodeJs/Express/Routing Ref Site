@@ -1,0 +1,19 @@
+Ref URL : http://blog.jeonghwan.net/express-js-2-%EB%9D%BC%EC%9A%B0%ED%8C%85/
+Ref URL : https://hyc7575.github.io/2017/05/16/2017-05-16-nodejs-express-router-middleware/
+
+익스프레스 객체를 담고있는 app변수는 HTTP 메쏘드 명에 해당하는 함수를 가지고 있다.
+app.post()
+app.get()
+app.put()
+app.delete()
+
+응답
+라우트 로직을 구현한 뒤 요청한 클라이언트로 결과를 보내줘야 한다. 결과는 문자열이 될 수도 있지만 파일, html 문서나 상태코드가 될 수 도 있다. 
+특별한 경우에는 바디없이 HTTP 헤더만 보낼수도 있다. 리스판스 객체(res)는 이러한 기능을 각 각의 함수로 구현해 놓았다.
+res.send(): 문자열로 응답한다.
+res.json(): Json 객체로 응답한다.
+res.render(): Jade같은 템플릿을 렌더링한다.
+res.sendfile(): 파일 다운로드로 응답한다.
+res.set(): 헤더 값을 세팅한다. 세팅 후 res.send()를 호출하면 바디없이 헤더만 보낼 수 있다.
+
+#HTML라우팅시 이미지 참고(src="image/df.jpg")는 정적경로(express.static)에서 찾는다.
