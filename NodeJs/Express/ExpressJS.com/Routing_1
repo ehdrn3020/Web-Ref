@@ -1,0 +1,54 @@
+#Rout Method
+var express = require('express');
+var app = express();
+
+// GET method route
+app.get('/', function (req, res) {
+  res.send('GET request to the homepage');
+});
+
+// POST method route
+app.post('/', function (req, res) {
+  res.send('POST request to the homepage');
+});
+
+//어떠한 HTTP 메소드로부터도 파생되지 않습니다. 이 메소드는 모든 요청 메소드에 대해 한 경로에서 미들웨어 함수를 로드하는 데 사용됩니다.
+app.all('/secret', function (req, res, next) {
+  console.log('Accessing the secret section ...');
+  next(); // pass control to the next handler
+});
+
+
+
+#라우트 경로
+다음의 라우트 경로는 요청을 /about에 일치시킵니다.
+app.get('/about', function (req, res) {
+  res.send('about');
+});
+
+다음의 라우트 경로는 요청을 /random.text에 일치시킵니다.
+app.get('/random.text', function (req, res) {
+  res.send('random.text');
+});
+
+
+#문자열 패턴
+다음의 라우트 경로는 acd 및 abcd와 일치합니다.
+app.get('/ab?cd', function(req, res) {
+  res.send('ab?cd');
+});
+
+다음의 라우트 경로는 abcd, abbcd 및 abbbcd 등과 일치합니다.
+app.get('/ab+cd', function(req, res) {
+  res.send('ab+cd');
+});
+
+다음의 라우트 경로는 abcd, abxcd, abRABDOMcd 및 ab123cd 등과 일치합니다.
+app.get('/ab*cd', function(req, res) {
+  res.send('ab*cd');
+});
+
+다음의 라우트 경로는 /abe 및 /abcde와 일치합니다.
+app.get('/ab(cd)?e', function(req, res) {
+ res.send('ab(cd)?e');
+});
