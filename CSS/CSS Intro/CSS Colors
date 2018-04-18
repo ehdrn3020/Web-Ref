@@ -1,0 +1,20 @@
+#Background Color
+<h1 style="background-color:DodgerBlue;">Hello World</h1>
+<p style="background-color:Tomato;">Hello World</p>
+
+
+#Text Color
+<p style="color:DodgerBlue;">Lorem ipsum...</p>
+
+
+#Border Color
+<h1 style="border:2px solid Tomato;">hello world</h1>
+
+
+#RGBA Value
+rgba(red, green, blue, alpha)
+The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (not transparent at all):
+Example
+<h1 style="background-color:rgba(255, 99, 71, 0);">rgba(255, 99, 71, 0)</h1>
+<h1 style="background-color:rgba(255, 99, 71, 0.2);">rgba(255, 99, 71, 0.2)</h1>
+<h1 style="background-color:rgba(255, 99, 71, 0.4);">rgba(255, 99, 71, 0.4)</h1>
