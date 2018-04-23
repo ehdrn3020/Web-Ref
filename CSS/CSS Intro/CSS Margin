@@ -1,0 +1,48 @@
+#Margin
+
+margin: 25px 50px 75px 100px;
+top margin is 25px
+right margin is 50px
+bottom margin is 75px
+left margin is 100px
+Example
+p {
+    margin: 25px 50px 75px 100px;
+}
+
+
+margin: 25px 50px;
+top and bottom margins are 25px
+right and left margins are 50px
+Example
+p {
+    margin: 25px 50px;
+}
+
+
+margin: 25px;
+all four margins are 25px
+Example
+p {
+    margin: 25px;
+}
+
+
+#The auto Value
+div {
+ width: 300px;
+ margin: auto;
+ border 1px solid red;
+}
+
+
+#The inherit Value
+Example
+div {
+    border: 1px solid red;
+    margin-left: 100px;
+}
+
+p.ex1 {
+    margin-left: inherit;
+}
