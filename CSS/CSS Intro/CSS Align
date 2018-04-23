@@ -1,0 +1,63 @@
+#Center Align Elements
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+#Center Align Text
+.center {
+  text-align: center;
+}
+
+#Center an Image - Using Margin
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+#Left and Right Align - Using Position
+.right {
+  position: absolute;
+  right: 0px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+#Left and Right Align - Using float
+.right {
+    float: right;
+    width: 300px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+
+#The clearfix Hack
+If an element is taller than the element containing it, and it is floated, 
+it will overflow outside of its container. You can use the "clearfix"
+.clearfix {
+  overflow: auto;
+ }
+ 
+#Center Vertically - Using padding
+ .center {
+    padding: 70px 0;
+    border: 3px solid green;
+}
+ 
+#Center Vertically - Using position & transform
+ .center { 
+    height: 200px;
+    position: relative;
+    border: 3px solid green; 
+}
+
+.center p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
