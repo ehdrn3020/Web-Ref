@@ -1,0 +1,13 @@
+##cmd apache command
+#Setting Ref URL
+http://jimnong.tistory.com/612?category=464860
+
+#install
+httpd -k install
+
+httpd -k start
+httpd -k stop
+httpd -k restart
+
+#remove
+httpd.exe -k uninstall
