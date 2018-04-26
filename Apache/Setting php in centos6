@@ -1,0 +1,60 @@
+#apm 설치 후 작업
+#Ref URl : http://aeac.tistory.com/20
+
+
+[apache]
+
+[root@localhost ~]# vi /etc/httpd/conf/httpd.conf
+.
+#ServerName www.example.com:80
+ServerName 192.168.223.129:80   (도메인 또는 해당서버 IP 입력 추가)
+
+참고]
+■ apache → nobody 변경
+ROOT 권한으로 실행된 아파치의 하위 프로세스를 이곳에서 지정한 사용자로 실행한다는 의미, 
+기본값으로 apache 또는 daemon 으로 되어있지만 대부분 nobody로 변경하여 이용한다. 약간 보안적인 의미를 포함
+
+■ ServerName
+자기 서버가 이 도메인을 사용한다는것을 알리기 위한 수단, 예를 들어
+ServerName www.test.com:80 → 홈페이지 접속시 해당 도메인(http://www.test.com)으로 연결
+ServerName 192.168.122.128:80 → 홈페이지 접속시 해당 도메인((http://192.168.122.128)으로 연결 (도메인이 없을경우 IP 입력)
+
+
+
+[php]
+
+[root@localhost ~]# vi /etc/httpd/conf/httpd.conf
+.
+<IfModule dir_module>
+DirectoryIndex index.html index.htm index.php (추가)
+</IfModule>
+
+AddType application/x-httpd-php .php .html .htm .inc  (추가)
+AddType application/x-httpd-php-source .phps  (추가)
+
+참고]
+■ 실제 PHP환경설정을 관리하는 파일은 아래의 경로입니다.
+[root@localhost ~]# vi /etc/php.ini
+
+
+html 업로드 기본 디렉토리는 아래와 같습니다.
+[root@localhost ~]# cd /var/www/html/
+
+해당 경로에서 PHP의 정보를 보여주는 함수의 파일을 하나 생성합니다.
+[root@localhost html]# vi /var/www/html/phpinfo.php
+<?php phpinfo(); ?>
+
+아파치재시작
+service httpd restart
+
+
+[mysql]
+□ Maria DB 기본설정 (DB가 구동된 상태에서 진행가능)
+[root@localhost ~]# mysql_secure_installation
+. 
+.쭉설정
+
+Maria(Mysql) 환경설정을 관리하는 파일은 아래의 경로입니다.
+[root@localhost ~]# vi /etc/my.cnf
+
+
