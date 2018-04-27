@@ -11,3 +11,11 @@ httpd -k restart
 
 #remove
 httpd.exe -k uninstall
+
+
+#cmd mysql command
+mysql.exe --install
+net start mysql
+net stop mysql
+net stop mysql & net start mysql
+
