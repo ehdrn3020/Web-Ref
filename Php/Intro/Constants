@@ -1,0 +1,11 @@
+Create a PHP Constant
+To create a constant, use the define() function.
+
+Syntax
+define(name, value, case-insensitive)
+
+Example
+<?php
+define("GREETING", "Welcome to W3Schools.com!", true);
+echo greeting;
+?>
