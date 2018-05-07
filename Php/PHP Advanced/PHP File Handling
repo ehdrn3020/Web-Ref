@@ -1,0 +1,24 @@
+#PHP readfile() Function
+EX
+echo readfile("webdictionary.txt");
+
+
+#PHP Open File - fopen()
+EX
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+
+
+#PHP Read File - fread()
+The fread() function reads from an open file.
+The first parameter of fread() contains the name of the file to read from and 
+the second parameter specifies the maximum number of bytes to read.
+EX
+fread($myfile,filesize("webdictionary.txt"));
+
+
+#PHP Close File - fclose()
+The fclose() function is used to close an open file.
+EX
+$myfile = fopen("webdictionary.txt", "r");
+// some code to be executed....
+fclose($myfile);
