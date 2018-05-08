@@ -1,0 +1,16 @@
+//command
+composer require laravel/socialite
+composer require socialiteproviders/naver
+
+//페이스북 로그인 
+https://www.youtube.com/watch?v=EYdeTbQyhL8
+//페이스북 가입하기
+https://www.youtube.com/watch?v=lyCxc72IH9Y
+https://scotch.io/tutorials/laravel-social-authentication-with-socialite
+//참조 튜토리얼
+https://laravel.com/docs/5.6/socialite#configuration
+
+//네이버 로그인
+//Socialite naver API
+http://socialiteproviders.github.io/providers/naver.html
+https://github.com/visualplus/naverid
