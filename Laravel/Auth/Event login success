@@ -1,0 +1,10 @@
+Ref URL : https://stevenwestmoreland.com/2017/03/recording-last-login-information-using-laravel-events.html
+
+//model
+User.php
+
+//Provider
+App\Providers\EventServiceProvider
+
+//Listener
+App\Listeners\LogSeccessfulLogin
