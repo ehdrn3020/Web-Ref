@@ -1,0 +1,72 @@
+//5.1변수를 이용한 문자열 보관
+<h1>{{ $greeting or 'Hello'}}<br>{{ $name or '' >></h1>
+
+//5.2주석
+{{-- 주석내용 --}}
+
+
+//5.3제어구조
+##resources/views/welcome.blade.php
+@if($itemCount = count($items))
+  <p>{{ $itemCount }} 종류의 과일이 있습니다.</p>
+  @foreach($items as $item)
+  <li>{{ $item}}</li>
+  @endforeach
+@else
+  <p>아무것도 없는데..</p>
+@endif
+
+##App/Http/Controllers/testController.php
+ public function index(){
+   $items = ['d','3','22'];
+     return view('test', [
+     'name'=>'dong',
+     'greeting'=>'hi',
+     'items'=> $items,
+   ]);
+ }
+
+//반복문
+@foreach($items as $item)
+  <li>{{ $item}}</li>
+@endforeach
+
+@forelse($items as $item)
+  <li>{{ $item}}</li>
+@empty
+ <li> Nothing </li>
+@endforelse
+
+
+//5.4템플릿상속
+#Child blade
+@extends('layouts.master')
+
+@section('content')
+  <p>저는 자식뷰의content섹션이다</p>
+@endsection
+
+#Parent blade
+<body>
+  @yield('content')
+</body>
+
+
+//5.5조각 뷰 삽입
+#Footer blade
+<footer>
+  <p>저는 꼬리말입니다.</p>
+</footer>
+
+#master blade
+@section('content')
+  @include('footer')
+@endsection
+
+
+//*조각뷰와 상속의 세션이름이 같을경우
+@parent     *구별
+@section('content')
+  <p>저는 자식뷰의content섹션이다</p>
+@endsection
+
