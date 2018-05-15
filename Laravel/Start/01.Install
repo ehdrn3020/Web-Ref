@@ -1,0 +1,9 @@
+//1.1새로운 라라벨 프로젝트 만들기
+composer create-project laravel/larabel myapp --prefer-dist --verbose
+
+//확인
+cd myapp
+php artisan --version
+
+//서버 구동
+php artisan serve
