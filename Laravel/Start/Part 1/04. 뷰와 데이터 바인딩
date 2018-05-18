@@ -1,0 +1,23 @@
+4.1 뷰 반환
+- 하위 디렉터리에 있는 뷰는 점(.) or (/)로 참조
+- 뷰파일은 이름.blade.php같은 모양, 라라벨템블릿을 사용하지 않는다면 .php파일도 가능
+
+4.2 데이터 바인딩
+
+- With() 메서드
+Route::get('/', function(){
+  return veiw('welcom')->with('name', 'foo');
+  /*  return view('welcome')->with([
+        'name'=> 'foo',
+        'greeting'=>'안녕하세요!',
+        ]);                            배열로 바인딩*/
+  });
+
+
+- view() 함수
+Route::get('/', function(){
+  return view('welcom', [
+    'name'=> 'foo',
+    'greeting'=>'안녕하세요!',
+  ]);
+});
