@@ -1,0 +1,39 @@
+3.2 라우팅 만들기
+-.env파일 또는 config아래 파일들의 값을 변경하면 로컬서버를 재시간해야한다.
+[route/web.php]
+Route::get('/', function() {
+  return view('welcome') 
+});
+
+
+3.3 URL파라미터
+[route/web.php]
+Route::get('/{foo}', function($foo){
+  return $foo;
+});
+
+-url파라미터 패턴
+Route::pattern('foo','[0-9a-zA-Z]{3}'); //정규표현식으로 파라미터 패턴을 강제
+Route::get('/{foo?}', function($foo='bar'){
+  return $foo;
+});
+OR
+Route::get('/{foo?}', function($foo='bar'){
+  return $foo;
+})->where('foo','[0-9a-zA-Z]{3}');  
+//  '/'요청은 bar을 출력하고 /abc요청은 abc를 출력한다. 패턴어긋나면 NotFoundHttp Exception을 반환한다.
+
+
+3.4 라우트 이름
+Route::get('/', [
+  'as'=>'home',
+  'uses' => 'HomeController@index'    //Controller로 넘기기
+  //return view('home');              //view로 넘기기
+]);
+
+Route::get('/home', function(){
+  return redirect(route('home'));     //도우미 함수
+});
+
+-라우트 오버라이드
+같은 이름으로 라우트 정의시 맨 밑의 라우트가 먼저 정의한 라우트를 오버라이트 한다.
