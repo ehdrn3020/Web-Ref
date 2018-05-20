@@ -11,6 +11,53 @@ title VARCHAR(255),
 body TEXT
 ) engine=innoDB default charset=utf8 collate=utf8_unicode_ci;
 
+
 6.2 REPL
 라라벨 콘솔 : $php artisan tinker
+
+
+6.3 데이터베이스 쿼리
+[.evn]
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=rt
+DB_USERNAME=rt
+DB_PASSWORD=rt
+
+[console]
+$php artisan tinker
+>DB::select('SELECT * FROM posts');
+>DB::insert('INSERT INTO posts(title,body) VALUES(?,?)',['  ','   2']);
+
+$posts = DB::select('SELECT * FROM posts');
+//프로퍼티 접근
+$posts[1]->body;
+//인스턴트 쿼리
+$posts = DB::selectOne('SELECT * FROM posts where id = ?', [1]);
+
+
+6.4 쿼리 빌더
+//실전에서 쓰는 실용적인 데이터베이스조작
+>DB::table('posts')->get();
+>DB::table('posts')->first();
+>DB::table('posts')->get(['title'])->first();
+>DB::table('posts')->find(2);
+>DB::table('posts')->find(2,['body']);
+
+//조건절
+>DB::table('posts')->where('body','=','데트풀2')->get();
+>DB::table('posts')->where('body','데트풀2')->get();       //등호가 '='일떄는 생략가능
+>DB::table('posts')->whereBody('데트풀2')->get();          //등호가 '='일때만 사용가능
+>DB::table('posts')->where(function ($query){ $query->where('id',1);})->get();
+
+//자주쓰는메서드
+-insert(array $value)  
+-update(array $value) 
+-delete(int $id)      
+-pluck(string $column, string $key = null)  // 인자로 지정한 열의 값으로만 구성된 컬렉션을 조회
+-limit(int $value)    
+-orderBy(string $column, string $direction = 'asc')  
+-count(), distinct(), select(DB::raw('count(*) as cnt')), join(), union(), whereNUll(), whereNotNUll(), having(), groupBy()
+Ref: https://laravel.com/docs/queries
 
