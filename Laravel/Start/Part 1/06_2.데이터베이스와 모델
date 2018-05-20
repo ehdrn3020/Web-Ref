@@ -1,0 +1,40 @@
+6.5 엘로퀀트ORM
+//데이터베이스 데이터를 객체로 표현하기 위한 변환 혹은 반대 개념
+
+//새로운 테이블 생성 'authors'
+CREATE TABLE authors(
+id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+email VARCHAR(255) NOT NULL,
+password VARCHAR(60) NOT NULL)
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+//모델 만들기
+$php artisan make:model Post
+$php artisan make:model Author
+
+[app/Author.php]       
+use Illuminate\Database\Eloquent\Model; 
+class Post extends Model                // Model클래스를 상속해야 함
+{
+    protected $table='저자테이블명';     //테이블이름은 복수로, 모델이름은 단수로! 아닐시에 명시적 코드적용
+    public $timestamps = false;         //create_at, update_at컬럼 사용 안할시
+}
+
+//모델쿼리
+>App\Author::get();
+>$author = new App/Author;
+>$author->email = 'foo@bar.com';
+>$author->password = '1234';
+>$author->save();
+OR
+>App\Author::create([
+  'email'=>'foo@bar.com',
+  'password' => bcrypt('1234'),     //단방향 복고화
+  ]);
+  
+//MassAssignmentException : 엘로퀀트는 DB에 대량할당으로부터 보호를 위해 $fillable프로퍼티 or $guarded프로퍼티를 이용한다.
+class Post extends Model               
+{
+    protected $fillable = ['email', 'password'];       
+}
+//팅커콘솔 시작하고 대량할당 재시도 (모델이 바뀌면 팅커재시작)
