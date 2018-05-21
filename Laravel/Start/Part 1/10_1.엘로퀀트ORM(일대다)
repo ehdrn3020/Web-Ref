@@ -1,0 +1,41 @@
+10.1 일대다 관계
+
+[tinker console]
+$php artisan make:migration create_articles_table --create=articles
+$php artisan make:model Article
+
+[migration/create_articles_table.php]
+public function up()
+    {
+        Schema::create('articles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned()->index();
+            $table->string('title');
+            $table->text('content');
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+        });
+    }
+- foreign(string|array $columns) : 테이블 끼리 키 관계를 연결한다. 
+  onUpdate, onDelete는 열이 변경/삭제 될 때의 동작 옵션을 정의한 것이다.
+  
+  
+[app\Article.php]
+protected $fillable = ['title', 'content'];
+public function user(){
+  return $this->belongsTo(User::class);
+}
+
+-양방향 : User쪽에서 Article관계 정의가 필요
+-엘로퀀트는 모델 이름으로 외래 키의 열 이름을 추정한다.
+[app\User.php]
+public function articles(){
+  return $this->hasMany(Article::class);
+}
+
+//관계확인
+[tinker console]
+>App\User::find(1)->articles()->create(['title'=>'first title', 'content'=>'first content']);
+//데이터베이스 컬럼확인하면 생성되어있다.
+
