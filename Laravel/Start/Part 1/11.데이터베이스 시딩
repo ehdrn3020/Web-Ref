@@ -1,0 +1,79 @@
+-데이터베이스 테이블에 테이터를 심는 행위, 서비스 구성에 필요한 기본데이터, 개발 및 테스트를 위한 데이터를 빠르게 준비할때 사용.
+
+11.1 시더 만들기
+$php artisan make:seeder UserTableSeeder
+
+[database/seeds/UserTableSeeder.php]
+public function run(){
+        App\User::create([
+          'name'=> sprintf('%s %s', str_random(3), str_random(4)),
+          'email'=> str_random(6) . '@example.com',
+          'password'=> bcrypt('pwd'),
+        ]);
+    }
+[database/seeds/ArticleTableSeeder.php]    
+public function run(){
+        $users = App\User::all();
+        $users->each(function ($user){
+          $user->articles()->save(
+            factory(App\Article::class)->make()
+          );
+       });
+    }
+- str_random(int $length=16) : 랜덤 문자열을 반환
+- sprintf(string $format, mixed $args=null) : php내장함수
+    
+//시더 실행
+$php artisan db:seed --class=UserTableSeeder
+
+
+11.2 모델 팩토리
+- 더미 데이터를 빠르게 만들기 위한 도구
+[tinker console]
+>factory(App\User::class)->make();
+>factory(App\User::class)->make(['name'=>'dododod']);
+
+-factory(string $class, int $amount=1) : 두번째 인자 생략가능, $class인스터스를 만든다
+-make(array $attributes=[]) : 모델 팩토리가 임의로 채운 값을 이용해서 새로운 모델 인스턴스를 만든다.
+
+-make()는 모델을 만들기만 한다, 저장하려면 아래 코드를 UserTableSeeder.php에 삽입
+public function run(){
+   factory(App\User::class, 5)->create();
+}
+-시더 실행후 확인
+
+
+11.2.1 모델팩토리 추가
+: 모델팩토리는 users, articles 테이블 스키마를 database/factories/에서 얻는다. 
+[database/factories/UserFactory.php]
+<?php
+use Faker\Generator as Faker;
+$factory->define(App\User::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'remember_token' => str_random(10),
+    ];
+});
+
+[database/factories/ArticleFactory.php]
+<?php
+use Faker\Generator as Faker;
+$factory->define(App\Article::class, function (Faker $faker) {
+    $date = $faker->dateTimeThisMonth;
+    return [
+        'title' => $faker->sentence(),
+        'content' => $faker->paragraph(),
+        'created_at' => $date,
+        'updated_at' => $date,
+    ];
+});
+
+
+11.3 마스터 시더
+모델마다 아티즌 시딩 명령을 수행하는 것이 번거로움으로 시더 클래스를 등록할 수 있는 마스터 시더로 관리한다.
+
+11.4 마이그레이션과 시딩
+마이그레이션과 시딩을 한번에 관리하면 편리하다
+$php artisan migrate:refresh --seed
