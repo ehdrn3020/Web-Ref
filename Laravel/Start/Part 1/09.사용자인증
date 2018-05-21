@@ -48,3 +48,10 @@ Route::get('auth/logout', function(){
 -auth() : 도우미함수
 -attempt(array $credentials=[], bool $remember = false) : 사용자로그인확인
 -check() : URL을 요청한 사용자가 로그인한 상태면 true
+
+
+9.3 라라벨 내장 사용자 인증
+$php artisan make:auth
+//확인
+$php artisan route:list
+
