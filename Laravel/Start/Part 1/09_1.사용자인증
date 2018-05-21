@@ -1,0 +1,50 @@
+9.1 HTTP의 무상태 특성
+-HTTP는 상태를 저장할 공유된 장치가 없으므로, 세션이라는 이름표로 쿠키메커니즘을 이용해 클라이언트와 서버사이에 이름표를 계속 주고 받는다.
+ 라라벨은 web미들웨어 그룹에 속한 모든 라우트에서 세션을 유지한다.
+
+
+9.2 기본다지기
+[migrations.create_user_table.php]
+public function up(){
+      Schema::create('users', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('name',100);
+          $table->string('email',100)->unique();
+          $table->string('password',60);
+          $table->rememberToken();
+          $table->timestamps()       
+     });
+}
+
+[tinker console]
+>$user = App\User::create(['id'=>1,'name'=>'John', 'email'=>'jj@ex.com','password'=>bcrypt('1234')]);
+
+[route/web.php]
+Route::get('auth/login', fucntion(){
+  $credentials = [
+    'email'=>'jj@ex.com',
+    'password'=>'1234'
+  ];
+
+  if(! auth()->attempt($credentials)){
+    return '로그인 정보가 정확하지 않습니다';
+  }
+  return redirect('protected');
+});
+
+Route::get('protected', function(){
+  dump(session()->all());
+  if(! auth()->check()){
+    return '누구세요?';
+  }
+  return '어서와요' . auth()->user()->name;
+});
+
+Route::get('auth/logout', function(){
+  auth->logout();
+  return '잘가요';
+});
+
+-auth() : 도우미함수
+-attempt(array $credentials=[], bool $remember = false) : 사용자로그인확인
+-check() : URL을 요청한 사용자가 로그인한 상태면 true
