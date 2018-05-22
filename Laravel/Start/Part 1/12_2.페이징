@@ -1,0 +1,20 @@
+12.2 페이징
+
+-모델 쿼리를 변경하면 페이징 가능, get() -> paginate(int $perPage = null)로 변경
+-paginate()메서드는 Illuminate\Pagination\LengthAwarePaginator클레스 인스턴스를 반환
+
+[Controller]
+public function index(){
+   $articles = \App\Article::latest()->paginate(3);
+   return view('articles.index', compact('articles'));
+}
+-latest()는 쿼리 결과를 날짜 역순으로 정렬 = orderBy('created_at','desc')
+
+[view]
+//add
+@if($articles->count())
+  <div class="text-center">
+    {!! $articles->render() !!}
+  </div>
+@endif
+-count()메서드는 $articles에 담긴 모델의 개수를 반환하다.
