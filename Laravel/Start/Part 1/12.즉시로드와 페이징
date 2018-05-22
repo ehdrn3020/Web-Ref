@@ -1,0 +1,50 @@
+12.1 즉시로드
+[Route]
+Route::resource('articles', 'ArticlesController');
+
+[Controller]
+public function index()
+    {
+        $articles = App\Article::get();
+        return view('articles.index', compact('articles'));   //= ['articles'=>$articles ]
+    }
+
+[view]
+@extends('layouts.app')
+@section('content')
+<div class="container">
+    <h1>포럼 글 목록</h1>
+    <hr>
+    <ul>
+      @forelse($articles as $article)
+      <li>
+        {{ $article->title }}
+        <small>
+          by {{ $article->user->name }}
+        </small>
+      </li>
+      @empty
+      <p>글이 없습니다.</p>
+      @endforelse
+    </ul>
+</div>
+@endsection
+
+[Listener]
+-데이터베이스 이벤트가 발생할때 쿼리를 감시
+-[Route]에 추가
+DB::listen(function ($query){
+  var_dump($query->sql);
+});
+
+[N+1문제 해결, Controller]에 수정
+$articles = \App\Article::with('user')->get();
+-with() 메서드는 항상 엘로퀀트 모델 다음에 위치
+-with() 메서드 인자는 테이블이름이 아닌 모델 관계의 메서드
+
+
+[지연 로드]
+- 즉시 로드하지 않고, 필요할 때 관계를 로드해야 할 때가 있는데 이를 지연로드라 한다.
+- load(string|array $relations)메서드 사용
+[컨트롤러]
+$articles->load('user');  //
