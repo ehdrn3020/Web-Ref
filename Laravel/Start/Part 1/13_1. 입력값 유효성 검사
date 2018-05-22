@@ -1,0 +1,66 @@
+13.1 유효성 검사 기본기
+[Route]
+Route::resource('articles', 'ArticlesController');
+
+[Controller]
+public function create(){
+   return view('articles.create');
+}
+
+
+[view: articles/create.blade.php]
+@extends('layouts.app')
+@section('content')
+<div class="container">
+  <h1>새 포럼 글 쓰기</h1>
+  <hr>
+  <form action="{{ route('articles.store') }}" method="post">
+      {!! csrf_field() !!}
+      <!-- title키에 해당하는 유효성 검사 오류가 있는지 확인, 있을시 has-error출력 -->
+    <div class="form-group {{ $errors->has('title')? 'has-error' : '' }}">
+      <label for="title">제목</label>
+      <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control"/>
+      <!-- 유효성 검사 오류 발생시 컨트롤러는 Illuminate\Support\MessageBag에 의해 message반환 -->
+      {!! $errors->first('title', '<span class="form-error">:message</span>') !!}
+    </div>
+
+    <div class="form-group {{ $errors->has('content')? 'has-error' : '' }}">
+      <label for="content">본문</label>
+      <textarea name="content" id="content" rows="10" class="form-control">
+        {{ old('contetn') }}
+      </textarea>
+        {!! $errors->first('content', '<span class="form-erre">:message</span>') !!}
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">저장하기</button>
+    </div>
+  </form>
+</div>
+@stop
+
+
+[Controller 유효성 로직 추가]
+public function store(Request $request){
+      //유효성 검사 규칙 정의
+      $rules = [
+        'title'=>['required'],
+        'content'=>['required','min:10'],
+      ];
+      /* Validator파사드와 make메서드를 이용, 유효성검사 인스턴스를 만든다.
+         첫번째인자는 검사대상폼, 두번째인자는 검사규칙 */
+      $validator = \Validator::make($request->all(), $rules);
+
+      /* back():이전페이지로 리디렉션, withErrors():검사실패이유를 세션에 담아 뷰의 $errors변수에 넘김
+        withInput():폼데이터를 세션에 굽는 일, 뷰의 old()함수*/
+      if($validator->fails()){
+        return back()->withErrors($validator)->withInput();
+      }
+
+      $article = \App\User::find(1)->articles()->create($request->all());
+      if(!$article){
+        return back()->with('flash_message','글이 저장되지 않습니다.')->withInput();
+      }
+      return redirect(route('articles.index'))->with('flash_message','작성하신 글이 저장되었습니다.');
+    }
+
