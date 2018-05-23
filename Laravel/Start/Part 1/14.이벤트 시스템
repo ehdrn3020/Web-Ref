@@ -1,0 +1,71 @@
+14.1 기본기 다지기
+[Controller]
+/*이벤트: event('이벤트이름', '이벤트데이터') */
+var_dump('이벤트를 던집니다.');
+event('article.created', [$article]);
+var_dump('이벤트를 던졌습니다.');
+
+[Route]
+Event::listen('article.created', function($article){
+  var_dump('이벤트를 받았습니다.');
+  var_dump($article->toArray());
+});
+
+
+
+14.2 이벤트 레지스트리
+-이벤트 정의를 모아둔 곳은 app\Providers\EventServiceProvider
+[Event]
+public function boot(){
+    parent::boot();
+    Event::listen('article.created', function($article){
+      var_dump('이벤트를 받았습니다.');
+      var_dump($article->toArray());
+    });
+}
+
+
+
+14.3 이벤트 리스너 클레스
+-이벤트 처리 로직을 별도 클래스도 분리할 수 있다.
+$php artisan make:listener ArticlesEventListener --event=article.created
+
+[Listeners/ArticlesEventListener.php]
+// use App\Events\article.created;
+public function handle(\App\Article $article){
+   var_dump('이벤트받았습니다. 받은데이터는 다음과 같습니다.');
+   var_dump($article->toArray());
+ }
+ 
+[Providers/EventServiceProvider.php] //14.2보다 코드가 간결해짐
+public function boot(){
+   Event::listen('article.created', \App\Listeners\ArticlesEventListener::class);
+}
+ 
+
+
+14.4 이벤트 클래스
+-이벤트시스템은 이벤트생성자, 이벤트채널(이름), 이벤트리스너로 구성된다. 이벤트를 전담하는 클래스를 만들어보자
+$php artisan make:event ArticleCreated
+
+[Controller]
+dump('이벤트를 던집니다.');
+event(new \App\Events\ArticleCreated($article));
+dump('이벤트를 던졌습니다.');
+
+[Events/ArticlesCreated.php]
+public $article;
+public function __construct(\App\Article $article){
+    $this->article = $article;
+}
+ 
+[Providers/EventServiceProvider.php]
+-첫인자의 이벤트가 발생하면 두번째 인자의 클래스에게 처리를 위임
+Event::listen(\App\Events\ArticleCreated::class, \App\Listeners\ArticlesEventListener::class);
+
+[Listeners\ArticlesEventListener.php]
+public function handle(\App\Events\ArticleCreated $event){
+   dump('이벤트받았습니다. 받은데이터는 다음과 같습니다.');
+   dump($event->article->toArray());
+}
+
