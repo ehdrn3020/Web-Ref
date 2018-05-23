@@ -1,0 +1,35 @@
+14.5 실용적인 이벤트 시스템
+
+
+[Controller/ArticlesController.php]
+/*이벤트: event('이벤트이름', '이벤트데이터') */
+dump('이벤트를 던집니다.');
+event(new \App\Events\ArticleCreated($article));
+dump('이벤트를 던졌습니다.');
+
+[Provider/EventServiceProvider.php]
+protected $listen = [
+    App\Events\ArticlesEvent::class => [
+        App\Listeners\ArticlesEventListener::class,
+    ],
+];
+
+[console]
+$ php artisan event:generate
+
+[Events/ArticleCreatd.php]
+public $article;
+public $action
+public function __construct(\App\Article $article, $action='created'){
+    $this->article = $article;
+    $this->action = $action;
+}
+
+[Listeners/ArticlesEventListner.php]
+public function handle(\App\Events\ArticleCreated $event){
+   if($event->action==='created'){
+     \Log::info(sprintf('새로운 포럼 글이 등록되었습니다. : %s',
+     $event->article->title
+     ));
+   }
+ }
