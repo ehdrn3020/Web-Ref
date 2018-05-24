@@ -1,0 +1,80 @@
+16.1 지메일로 메일보내기
+[config/mail.php]
+'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', '메일@메일명.com'),
+        'name' => env('MAIL_FROM_NAME', '관리자'),
+    ],
+ 'stream' => [
+      'ssl' => [
+      'allow_self_signed' => true,
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+    ],
+  ],
+
+[.env]
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=mailname@gmail.com
+MAIL_PASSWORD=1234
+MAIL_ENCRYPTION=tls
+
+[url]
+https://myaccount.google.com/security#connectedapps
+보안수준낮은 맵 허용 설정
+
+[메세지 만들기 route/web.php]
+Route::get('mail', function(){
+  $article = App\Article::with('user')->find(1);
+  return Mail::send(
+    'emails.articles.created',
+    compact('article'),
+    function ($message) use ($article) {
+      $message->to('ehdrn3020@gmail.com');
+      $message->subject('새 글이 등록되었습니다 -' . $article->title)
+    }
+  );
+});
+-Mail::send(메일본문에 사용할 뷰, 뷰에 전달할 데이터, 메일 메시지구성 클로저)
+
+[뷰 만들기 views/emails/articles/created.blade.php]
+
+
+
+16.2 메일건으로 메일 보내기 - 한달에 1만건은 무료
+[다운로드 console]
+$composer require "guzzlehttp/guzzle:~5.3|~6.0"
+
+[url]
+https://app.mailgun.com
+가입후 메일 도메인 만들기
+
+[.env]
+MAIL_DRIVER=mailgun
+MAILGUN_DOMAIL=sandbox2a33ea88sdsdf12341234do6.mailgun.org
+MAILGUN_SECRET=key-db7147123456677889o31105
+MAIL_HOST=smtp.mailgun.com
+
+
+
+16.3 심화학습
+Mail::sent() 여러 메서드(인자 이름은 $message라고 가정한다)
+
+$message->to(array|string $address, string $name =null) : 받는사람, 여러 명일 때는 배열
+$message->from(string $address, string $name = null) : 전역으로 설정한 보낸사람 메일과 이름을 오버라이드 함
+$message->cc(string $address, string $name = null) : 참조, 여러명일때는 여러번 체인
+$message->bcc(string $address, string $name = null) : 숨은참조, 여러명일때는 여러번 체인
+$message->attach(string $file, array $options = []) : 파일 첨부, 
+                  ['as' => '파일병칭', mime' => 'application/zip']과 같이 두번째인자를 줄 수 있다.
+                  -뷰에서는 <img scr="{{ $message->embed(storage_path('elephant.png')) }}" alt=""> 로 인자넘겨받아사용가능
+                  
+
+
+                  
+
+
+
+
+
+
