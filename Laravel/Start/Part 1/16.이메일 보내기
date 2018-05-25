@@ -39,7 +39,17 @@ Route::get('mail', function(){
 -Mail::send(메일본문에 사용할 뷰, 뷰에 전달할 데이터, 메일 메시지구성 클로저)
 
 [뷰 만들기 views/emails/articles/created.blade.php]
-
+<h1>{{ $article->title }}
+  <small>{{ $article->user->name }}</small>
+</h1>
+<hr>
+<p>{{ $article->content }}
+  <small>{{ $article->created_at}}</small>
+</p>
+<hr>
+<footer>
+  이 메일은 {{ config('app.url') }}에서 보냇습니다.
+</footer>
 
 
 16.2 메일건으로 메일 보내기 - 한달에 1만건은 무료
