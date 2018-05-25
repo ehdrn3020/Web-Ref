@@ -1,9 +1,12 @@
-//콘솔 php내장 웹 서버 실행
+1. 콘솔 php내장 웹 서버 실행
 php artisan serve
 php artisan --host=0.0.0.0 --port=8001
 
 
-라라벨 설치시 필요 패키지
+
+2. 라라벨 설치시 필요 패키지
+
+패키지 설치
 sudo yum install php php-mysql php-sqlite3 php-mbstring php-xml
 
 패키지 버전 호환이 안맞을 시 remi를 이용하여 최신패키지 설치
@@ -25,3 +28,12 @@ composer create-project laravel/laravel myapp --prefer-dist --verbose
 컴포저 에러시 초기화
 composer install
 composer dump-autoload
+
+
+3. 참조 사이트
+https://github.com/chiraggude/awesome-laravel
+https://laravel.kr/docs
+
+
+
+
