@@ -1,6 +1,6 @@
 1. 콘솔 php내장 웹 서버 실행
 php artisan serve
-php artisan --host=0.0.0.0 --port=8001
+php artisan serve --host=0.0.0.0 --port=8001
 
 
 2. 라라벨 설치시 필요 패키지
