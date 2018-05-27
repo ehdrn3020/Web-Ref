@@ -1,0 +1,50 @@
+18.1 파일 시스템
+-파일시스템을 이용할 때 File파사드를 이용한다
+put(string $path, string $contents) : 파일쓰기
+files(string $directory) : 디렉터리 아래 있는 파일 목록 조회하기
+exists(string $path) : 파일이나 디렉터리가 있는지 확인(있으면 true)
+glob(string $pattern) : 파턴에 맞는 파일 목록 조회하기
+isDirectory(string $directroy) : 디렉터리인지 확인(있으면 true)
+makeDirectory(string $path, int $mode) : 디렉터리 만들기
+
+
+18.2 모델 만들기
+php artisan make:model Documentation
+
+[app/Documentation.php]
+use File;
+class Documentation{
+     public function get($file = 'documentation.md'){
+       $content = File::get($this->path($file));
+       return $this->replaceLinks($content);
+     }
+     //파일 경로를 계산하는 메서드
+     protected function path($file){
+       //ends_with(string, array|string) 앞인자가 뒷인자로 끝나는지 확인하는 메서드
+       $file = ends_with($file, '.md') ? $file : $file . '.md';
+       //base_path(string) 인자의 절대 경로를 반환하는 함수
+       $path = base_path('docs' . DIRECTORY_SEPARATOR . $file);
+       
+       //파일여부확인
+       if(! File::exists($path)){
+         abort(404, '요청하신 파일이 없습니다.');
+       }
+       return $path;
+     }
+
+     protected function replaceLinks($content){
+       return str_replace('/docs/{{version}}', '/docs', $content);
+     }
+}
+
+
+[route/web.php]
+Route::get('docs/{file?}' , function($file = null){
+  $text = (new App\Documentation)->get($file);
+  return app(ParsedownExtra::class)->text($text);
+});
+
+
+18.3 테스트
+URL : GET /docs/documentation.md
+
