@@ -1,0 +1,71 @@
+19.1 사용자 정의 도우미 함수
+
+[app/helpers.php]
+<?php
+  if(! function_exists('markdonw')){
+    function markdown($text = null){
+      return app(ParsedownExtra::class)->text($text);
+    }
+  }
+
+[composer.json]
+"autoload": {
+        "classmap": [...],
+        "psr-4": {...},
+        "files":[
+          "app/helpers.php"
+        ]
+    },
+ 
+[console]
+composer dump-autoload --optimize
+
+[test]
+php artisan tinker
+>>> markdown('**bold**');
+=> "<p><strong>bold</strong></p>"
+
+
+12.2 컨트롤러
+[console]
+php artisan make:controller DocsController
+
+class DocsController extends Controller{
+    protected $docs;
+    public function __construct(\App\Documentation $docs){
+      $this->docs = $docs;
+    }
+
+    public function show($file = null){
+      $index = markdown($this->docs->get());
+      $content = markdown($this->docs->get($file ?: 'docs/documentation.md'));
+      return view('docs.show', compact('index','content'));
+    }
+}
+
+[Route]
+Route::get('docs/{file?}' , 'DocsController@show');
+
+
+19.3 뷰
+[docs/show.blade.php]
+@extends('layouts.app')
+
+@section('contetn')
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 docs__sidebar">
+      <aside>
+        {!! $index !!}
+      </aside>
+    </div>
+
+    <div class="col-md-9 docs__content">
+      <article>
+        {!! $content!!}
+      </article>
+    </div>
+  </div>
+</div>
+@stop
+
