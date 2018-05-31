@@ -13,8 +13,77 @@ https://laravel.com/docs/5.6/socialite#configuration
 https://developers.facebook.com/docs/facebook-login/overview?locale=ko_KR
 
 
+
 //네이버 로그인
 //Socialite naver API
 http://socialiteproviders.github.io/providers/naver.html
 //네이버개발자센터
 https://developers.naver.com/docs/login/overview/
+
+
+[login SessionsController]
+/* 소셜 로그인 */
+    public function redirectToProvider($provider){
+        return Socialite::driver($provider)->redirect();
+    }
+
+    public function handleProviderCallback($provider){
+      $user = Socialite::driver($provider)->user();
+      $authUser = $this->findOrCreateUser($user, $provider);
+      Auth::login($authUser, true);
+      return redirect($this->redirectTo);
+    }
+
+    public function findOrCreateUser($user, $provider){
+        $authUser = User::where('email', $user->email)->first();
+        if($authUser){
+          return $authUser;
+        }
+        return User::create([
+          'name' => $user->name,
+          'email'=> $user->email
+        ]);
+    }
+
+[Providers/eventServiceProvider]
+protected $listen = [       
+        /*naver social login*/
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+        'SocialiteProviders\\Naver\\NaverExtendSocialite@handle',
+        ],
+    ];
+
+[config/app.php]
+  'providers' => [
+    \SocialiteProviders\Manager\ServiceProvider::class,
+    ],
+  'aliases' => [
+    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+  ]
+
+[config/services.php]
+'naver' => [
+        'client_id' => env('NAVER_ID'),
+        'client_secret' => env('NAVER_SECRET'),
+        'redirect' => env('NAVER_URL'),
+    ],
+
+[view]
+onclick="location.href='{{url("auth/social/naver")}}'"
+
+[route]
+/* 소셜 로그인 */
+Route::get('auth/social/{provider}', [
+   'as'=>'social.create',
+   'uses'=>'Auth\SessionsController@redirectToProvider',
+]);
+Route::get('auth/social/{provider}/callback', [
+   'as'=>'social.callback',
+   'uses'=>'Auth\SessionsController@handleProviderCallback',
+]);
+
+[.env]
+NAVER_ID=boem_xFssdfsdfsdfsdf
+NAVER_SECRET=QY3sdfsdf1231
+NAVER_URL=http://yourURL/auth/social/naver/callback
+
