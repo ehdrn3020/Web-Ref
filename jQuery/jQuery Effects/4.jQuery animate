@@ -1,0 +1,52 @@
+1)Manipulate Multiple Properties
+$("button").click(function(){
+    $("div").animate({
+        left: '250px',
+        opacity: '0.5',
+        height: '150px',
+        width: '150px'
+    });
+}); 
+
+<div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+
+
+2)Using Relative Values
+$(document).ready(function(){
+    $("button").click(function(){
+        $("div").animate({
+            left: '250px',
+            height: '+=150px',
+            width: '+=150px'
+        });
+    });
+});
+<div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+
+
+3)Using Pre-defined Values
+$("button").click(function(){
+    $("div").animate({
+        height: 'toggle'
+    });
+}); 
+<div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+
+
+4)Uses Queue Functionality
+Example 1
+$("button").click(function(){
+    var div = $("div");
+    div.animate({height: '300px', opacity: '0.4'}, "slow");
+    div.animate({width: '300px', opacity: '0.8'}, "slow");
+    div.animate({height: '100px', opacity: '0.4'}, "slow");
+    div.animate({width: '100px', opacity: '0.8'}, "slow");
+}); 
+
+Example 2
+$("button").click(function(){
+    var div = $("div");
+    div.animate({left: '100px'}, "slow");
+    div.animate({fontSize: '3em'}, "slow");
+}); 
+style="background:#98bf21;height:100px;width:200px;position:absolute;">HELLO</div>
