@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+
+        $('#1').click(function(){
+          $(this).hide();
+        });
+        $("#2").dblclick(function(){
+          $(this).hide();
+        });
+        $("#3").mouseenter(function(){
+          $(this).hide();
+        });
+        $("#4").mouseleave(function(){
+          $(this).hide();
+        });
+        $("#5").mousedown(function(){
+          alert("Mouse down over p1!");
+        });
+        $("#6").mouseup(function(){
+          alert("Mouse up over p1!");
+        });
+
+        $("#p1").hover(function(){
+          alert("You entered p1!");
+        },
+        function(){
+          alert("Bye! You now leave p1!");
+        });
+
+        $("input").focus(function(){
+          $(this).css("background-color", "#cccccc");
+        });
+        $("input").blur(function(){
+          $(this).css("background-color", "#ffffff");
+        });
+
+        /*
+        The on() method attaches one or more event handlers for the selected elements.
+        Attach a click event to a <p> element:
+        */
+        $("#p2").on("click", function(){
+          $(this).hide();
+          alert('hi');
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <h2>This is a heading</h2>
+
+    <p id="1">click.</p><br>
+    <p id="2">dblclick</p><br>
+    <p id="3">mouseenter</p><br>
+    <p id="4">mouseleave.</p><br>
+    <p id="5">mousedown</p><br>
+    <p id="6">mouseup</p><br>
+    <p id="p1">hover</p><br>
+    Name: <input type="text" name="fullname"><br>
+    Email: <input type="text" name="email">
+    <p id="p2">hover</p><br>
+
+    <button>Click me to hide paragraphs</button>
+  </body>
+</html>
