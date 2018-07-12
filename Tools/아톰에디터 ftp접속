@@ -1,0 +1,25 @@
+1)다운로드
+file->settings->install  remote ftp
+
+2)설정파일 열기
+pakages->Remote-FTP->Toggle->Edit Configuration
+
+3)설정파일 작성
+{
+    "protocol": "ftp",              //sftp일시 port는 22
+    "host": "호스트_주소_입력",
+    "port": 21,
+    "user": "유저이름_입력",
+    "pass": "비밀번호_입력",
+    "promptForPass": false,
+    "remote": "경로_입력",
+    "secure": false,
+    "secureOptions": null,
+    "connTimeout": 10000,
+    "pasvTimeout": 10000,
+    "keepalive": 10000,
+    "watch": []
+}
+출처: http://recoveryman.tistory.com/242 [회복맨 블로그]
+
+4)
