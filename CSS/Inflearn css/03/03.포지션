@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  //Position : Relative
+  <style>
+    html{
+      border: 1px solid gray;
+    }
+    div{
+      border:5px solid tomato;
+      margin:10;
+    }
+    #me{
+      position: relative; /*기본값은 position:static*/
+      left: 100px;
+      top:100px;
+    }
+  </style>
+  
+  //Position: absolute
+  <style>
+    #parent, #other{
+      border: 5px solid tomato;
+    }
+    #me{
+      background-color: black;
+      color:white;
+      position: absolute; /*1.html의 기준으로 포지션됨
+                            2.left, top기본값은 원래있는위치
+                            3.absolute로하면 더이상 parent의 자식이아님
+                            그래서 width나 height를 직접지정해야함
+                            4. 상위 relative 부모태그가있으면 그
+                            위치에 따라 offset위치를 조정한다.*/
+      left: 0px;
+      top:0px;
+    }
+  </style>  
+</head>
+<body>
+  <div id="other">other</div>
+  <div id="parent">parent
+    <div id="me">me</div>
+  </div>
+</body>
+</html>
