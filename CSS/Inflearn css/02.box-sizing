@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    div{
+      margin: 10px;
+      width: 150px;
+      
+      box-sizing: inherit;
+                  /*border-box;
+                    content-box;*/
+                    
+    }
+    #small{
+      border: 10px solid black;
+    }
+    #large{
+      border: 30px solid
+    }
+  </style>
+</head>
+<body>
+  <div id="small">Hellow</div>
+  <div id="large">Hellow</div>
+</body>
+</html>
