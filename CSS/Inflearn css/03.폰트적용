@@ -1,0 +1,20 @@
+1)무료폰트다운로드 ttf파일
+
+2)https://www.web-font-generator.com 에서 폰트확장파일로 변환
+
+3)압축풀고 css/font/해당폰트 파일 insert
+
+4)preview.html의 @font-face복사 현css로 붙혀 넣기
+  Ex)
+  /* 배민주아체 */
+  @font-face {
+    font-family: 'BMJUA';
+    src: url(../fonts/BMJUA/BMJUA.eot) format('embedded-opentype'),
+        url(../fonts/BMJUA/BMJUA.woff) format('woff'),
+         url(../fonts/BMJUA/BMJUA.ttf)  format('truetype'),
+         url(../fonts/BMJUA/BMJUA.svg) format('svg');
+    font-style: 100;
+    font-weight: normal;
+  }
+  
+  body { font-family: 'BMJUA' !important; }
