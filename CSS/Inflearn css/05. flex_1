@@ -1,0 +1,62 @@
+1. 기본 flex
+<style>
+  .container{
+    display: flex;
+    flex-direction: row-reverse;      /*기본값은 row*/
+    flex-direction: column;
+  }
+  .item
+    background-color: tomato;
+    color: white;
+    border: 1px solid white;
+    flex-grow: 1; /*기본 값은 0, 1이면 container여백을 채운다*/
+  }
+</style>
+
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+  <div class="item">5</div>
+</div>
+
+
+
+2.flew-grow
+<style>
+  .container{ ... }
+  
+  .item
+    ...    
+    flex-grow: 1; /*기본 값은 0, 1이면 container여백을 채운다*/
+  }
+  .item:nth-child(2){
+    flex-grow:2; /*2만 좀 넓게 잡고싶다*/
+    flex-basis: 200px; /*기본*/
+  } 
+</style>
+
+
+
+3.flex-shrink
+<style>
+    .container{ ... }
+    .item{ ... }
+    
+    .item:nth-child(1){
+      flex-basis: 150px;
+      flex-shrink: 1;
+    }
+    
+    .item:nth-child(2){
+      flex-basis: 150px;
+      flex-shrink: 2;
+      
+      /*화면크기가 줄어들어도 레이아웃이 줄어들지 않는다.
+        basis값을 가지고 있을때 그보다 작아지는것을 컨트롤한다.
+        shrink1보다 2가 더 고통분담을 많이 한다.*/
+    }
+  </style>
+
+
