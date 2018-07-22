@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container{
+      display: flex;
+      flex-direction: column;
+    }
+    header{
+      border-bottom: 1px solid gray;
+    }
+    footer{
+      border-top: 1px solid gray;
+    }
+    .content{
+      display: flex;
+    }
+    .content nav{
+      border-right: 1px solid gray;
+    }
+    .content aside{
+      border-left: 1px solid gray;
+    }
+    nav, aside{                    /*중요! 웹페이지 사이즈가 줄어들면 main영역만 */
+      flex-basis: 150px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>동구</h1>
+    </header>
+    <section class="content">
+      <nav>
+        <ul>
+          <li>html</li>
+          <li>css</li>
+          <li>js</li>
+        </ul>
+      </nav>
+      <main>
+        생활코딩은 일반인을 위한 코딩수업입니다.
+      </main>
+      <aside>
+        광고부분!
+      </aside>
+    </section>
+    <footer>
+      <a href="http://opentutorials.rog/course/1">
+        homepage</a>
+    </footer>
+  </div>
+</body>
+</html>
