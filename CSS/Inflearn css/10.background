@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    div{
+      font-size: 50px;
+      height: 1000px;
+      border: 5px solid navy;
+
+      background-color: azure;
+      
+      background-image: url('Chrysanthemum.jpg');
+      /* color랑 image를 같이 사용할 수 있다. */
+      
+      background-repeat: no-repeat;
+      /* 옵션 repeat-x repeat-y는 x혹은 y축만 이미지를 반복한다 */
+
+      background-attachment: fixed;
+      /* 이미지는 스크롤이 안된다 */
+
+      background-size: contain;
+      /* 옵션 cover. 차이점을 알자 */
+
+      background-position: left bottom;
+      /* ((가로 세로) 이미지가 반복되지 않을 때 이미지 위치 수정가능하다. */
+
+      background: background-color background-image background-repeat background-attachment background-position;
+      /* 축약형 */
+    }
+  </style>
+</head>
+<body>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. ....xpedita. Earum, possimus?
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. ....xpedita. Earum, possimus?
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. ....xpedita. Earum, possimus?
+  </div>
+</body>
+</html>
