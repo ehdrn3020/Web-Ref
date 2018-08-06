@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .column{
+      column-count: 4;
+      /* column-width랑쓰게되면 4이상의 단은 생기지않는다. */
+      column-width: 200px;
+      /* 페이지넓이/200px에 따라 단이 나온다 */
+      text-align: justify;
+      
+      /* 문장열이 가지런해진다. */
+      column-gap:30px;
+      /* 단의 간격을 조정 */
+      
+      column-rule-style:solid;
+      column-rule-width: 5px;
+      column-rule-color: red;
+      /*단간격에 선이 생성된다. dotted dashed;*/
+    }
+    h1{
+      column-span: all;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="column">
+  lorem ... lorem...
+  <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+  lorem ... lorem...
+  </div>
+</body>
+</html>
