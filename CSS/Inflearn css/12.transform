@@ -1,0 +1,27 @@
+<!-- 다른옵션 참고: https://bennettfeely.com/filters/
+                  /* https://codepen.io/vineethtr/pen/XKKEgM */
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    h1{
+      background-color: deepskyblue;
+      color: white;
+      display: inline-block;
+      padding:5px;
+      font-size:3rem;
+      margin:100px;
+      
+      transform:
+      /* scale(0.5, 0.5); */
+        scaleX(1) scaleY(0.5);
+    
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>Flower hellow world</h1>
+</body>
+</html>
