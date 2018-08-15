@@ -1,0 +1,33 @@
+참고사이드 : matthewlein.com/ceaser 
+-transition-duration
+-transition-property
+-transition-delay
+-transition-timing-function
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    a{
+      font-size: 3rem;
+      /* 인라인블록으로 해야 transform이 먹힌다 */
+      display: inline-block;
+      /* 장면전환을 누구에게 적용 */
+      transition-property: all; /* transform font-size*/
+      /* 장면전환의 유지성 */
+      transition-duration: 1s;
+      /* 요약어
+      transition: all 1s;
+      */
+    }
+    a:active{
+      /* 글씨가 이동 + 글씨크기 작아짐 */
+      transform: translate(20px, 20px);
+      font-size:2rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="#">Click</a>
+</body>
+</html>
