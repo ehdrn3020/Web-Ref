@@ -1,0 +1,15 @@
+- AWS 사설 가성 서버(vcp)를 만들고 LEMP스택을 설치한다. 프로비전
+
+- 계정발급 : 가입시 무료 1년 - AWS프리티어
+
+- 서버 만들기 : 콘솔에로그인 -> EC2 -> 순서대로진행 -> ssh키 만들기
+
+- Window에서 접속 :
+  1)Putty사용 : puttyGen을 이용하여 AWS에서 생성한 ssh키(PEM파일)을 .ppk파일로 변환
+                putty configuration에서 SSH->Auth에 키 삽입 후 접속
+                Ref: http://igotit.tistory.com/entry/AWS-EC2-PuTTY%EB%A1%9C-%EC%A0%91%EC%86%8D%ED%95%98%EA%B8%B0
+                     http://igotit.tistory.com/1208
+                
+  2)Git bash : gitbash 다운로드 후 .ssh에 ssh키(PEM파일)을 저장
+               콘솔에서 입력 : ssh -i "파일이름.pem" ubuntu@ec2-52-79-111-167.ap-northeast-2.compute.amazonaws.com
+               퍼블릭 DNS는 AWS에서 로그인 후 확인
