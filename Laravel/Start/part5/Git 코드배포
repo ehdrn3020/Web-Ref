@@ -1,0 +1,24 @@
+1단계 : SSH키를 만든다.
+http://bit.ly/github-sshkey-gen
+
+$ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+$eval $(ssh-agent -s)
+Agent pid 59566
+$ssh-add ~/.ssh/id_rsa
+
+
+2단계 : 공개 키를 깃허브에 등록한다.
+http://bit.ly/github-sshkey-register
+
+
+3단계 : 접속테스트
+http://bit.ly/github-sshkey-test
+$ ssh -T git@github.com
+Enter passphrase for key '/c/Users/ehdrn/.ssh/id_rsa':
+Hi ehdrn3020! You've successfully authenticated, but GitHub does not provide shell access
+
+
+4단계 : 사용자 정보 설정
+git config --global user.name "이름"
+git config --global user.email "이메일 주소"
+
