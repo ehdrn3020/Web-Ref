@@ -1,0 +1,39 @@
+참고 URL : https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-Git-%EC%A0%80%EC%9E%A5%EC%86%8C-%EB%A7%8C%EB%93%A4%EA%B8%B0
+
+1)
+설정 확인
+git config --list 명령을 실행하면 설정한 모든 것을 보여주어 바로 확인할 수 있다.
+$ git config --list
+user.name=John Doe
+...
+
+
+2)
+git config <key> 명령으로 Git이 특정 Key에 대해 어떤 값을 사용하는지 확인할 수 있다.
+$ git config user.name
+John Doe
+
+
+3)
+기존 디렉토리를 Git 저장소로 만들기
+버전관리를 하지 아니하는 기존 프로젝트를 Git으로 관리하고 싶은 경우 우선 프로젝트의 디렉토리로 이동한다. 이러한 과정을 처음 해보는 것이라면 시스템마다 조금 다른 점을 주의하자.
+
+Windows:
+$ cd /c/user/my_project
+그리고 아래와 같은 명령을 실행한다:
+$ git init
+$ git add *.c
+$ git add LICENSE
+$ git commit -m 'initial project version'
+명령어 몇 개로 순식간에 Git 저장소를 만들고 파일 버전 관리를 시작했다.
+
+
+4)
+기존 저장소를 Clone 하기
+libgit2 라이브러리 소스코드를 Clone 하려면 아래과 같이 실행한다.
+
+$ git clone https://github.com/libgit2/libgit2
+아래과 같은 명령을 사용하여 저장소를 Clone 하면 `libgit2`이 아니라 다른 디렉토리 이름으로 Clone 할 수 있다.
+$ git clone https://github.com/libgit2/libgit2 mylibgit
+디렉토리 이름이 mylibgit 이라는 것만 빼면 이 명령의 결과와 앞선 명령의 결과는 같다.
+
