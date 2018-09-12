@@ -1,3 +1,9 @@
+- 이미지는 이미지맵을 사용
+- 팝업끄기는 display:none활용
+- 오늘하루닫기는 js쿠키값을 활용
+- 반응형은 html picture-source활용 가능
+
+
 <!DOCTYPE html>
 <html>
 <head>
