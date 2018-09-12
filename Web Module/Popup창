@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="euc-kr">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+<body>
+  <div style="display:block; position: absolute; z-index:61;top: 395px; left:50%;margin-left:50px;width: 320px; height: 340px;" id="ssslayer_popup_PMN11">
+    <span style="position: absolute; left: 0; top: 0;z-index: 2; ">
+      <img src="http://image1.hanatour.com/md/pc/P15569/f.png" alt="" border="0" usemap="#Map_weekend" style="width: 325px; height: 325px;">
+      <map name="Map_weekend">
+        <area shape="circle" coords="150,162,130" href="javascript:popLinkUrl();">
+      </map>
+    </span>
+    <span style="position: absolute; right: 10px; top: 60px;z-index: 2;">
+      <a href="javascript:;" onclick="javascript:btnCommonPOPUPLayerClose('layer_popup_PMN11');" id="ex">
+        <img src="http://image1.hanatour.com/_images/main/pop_layer_weekend_btn.png" alt="">
+      </a>
+    </span>
+    <span style="position: absolute; top: 285px; left: 115px; z-index: 3; color:#FFF;font-size:12px; vertical-align: middle">
+      <a href="#" name="Notice" onclick="javascript:pop_chk('layer_popup_PMN11');" id="notToday">
+        <img src="http://image1.hanatour.com/_images/main/layer_txt_close.png" alt="closed">
+      </a>
+    </span>
+  </div>
+
+<script type="text/javascript">
+/* 팝업쿠키 확인 */
+var result = getCookie('popup1');
+if (result == 'end') {
+   $("#ssslayer_popup_PMN11").css("display", "none");
+}
+
+/* 하루동안 안열기 쿠키 저장 */
+$("#notToday").click(function(){
+  // 하루동안이므로 1을 설정
+  setCookie( "popup1", "end" , 1);
+  $("#ssslayer_popup_PMN11").css("display", "none");
+});
+
+/* 쿠기가져오기 */
+function getCookie(name) {
+   var cookieName = name + "=";
+   var x = 0;
+   while ( x <= document.cookie.length ) {
+      var y = (x+cookieName.length);
+      if ( document.cookie.substring( x, y ) == cookieName) {
+         if ((lastChrCookie=document.cookie.indexOf(";", y)) == -1)
+            lastChrCookie = document.cookie.length;
+         return decodeURI(document.cookie.substring(y, lastChrCookie));
+      }
+      x = document.cookie.indexOf(" ", x ) + 1;
+      if ( x == 0 )
+         break;
+      }
+   return "";
+}
+
+/* 쿠키 SET */
+function setCookie(cname, value, expire) {
+   var todayValue = new Date();
+   // 오늘 날짜를 변수에 저장
+   todayValue.setDate(todayValue.getDate() + expire);
+   document.cookie = cname + "=" + encodeURI(value) + "; expires=" + todayValue.toGMTString() + "; path=/;";
+}
+
+/* 팝업창 지우기 */
+$("#ex").click(function(){
+  $("#ssslayer_popup_PMN11").css("display", "none");
+});
+</script>
+</body>
+</html>
