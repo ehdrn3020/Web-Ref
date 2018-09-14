@@ -1,0 +1,24 @@
+다운로드 사이트
+summernote.org
+
+
+기본 사용법
+<!-- include summernote css/js -->
+<link href="../../../summernote/summernote-lite.css" rel="stylesheet">
+<script src="../../../summernote/summernote-lite.js"></script>
+<script src="../../../summernote/lang/summernote-ko-KR.js"></script>
+    
+<textarea name="content" id="content" cols="20" rows="10" class="c-form__textarea">{{ old('content') }}</textarea>
+<script>
+$('#content').summernote({
+  lang: 'ko-KR',
+	height: 300,
+	minHeight: null,
+	maxHeight: null,
+	focus: false
+});
+</script>
+
+
+이미지 콜백 아작스 처리
+https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=221097971475&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
