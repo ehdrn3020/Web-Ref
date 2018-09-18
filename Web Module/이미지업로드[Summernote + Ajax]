@@ -1,0 +1,84 @@
+[blade.php]
+<meta name="csrf-token" content="{{ csrf_token() }}">
+.
+.
+<div class="join__wrong">{!! $errors->first('content', '<span class="form-error">:message</span>') !!}</div>
+<textarea name="content" id="content" cols="20" rows="10" lass="c-form__textarea">{{ old('content')}}</textarea>
+<script>
+$.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+});
+
+$('#content').summernote({
+  lang: 'ko-KR',
+  height: 500,
+  minHeight: null,
+  maxHeight: null,
+  focus: false,
+  callbacks: {
+    onImageUpload : function(files, editor, welEditable) {
+     var size = 0;
+     for(var i = files.length - 1; i >= 0; i--) {
+        size += files[i].size;
+        if(size > 20000000 || files[i].size > 10000000 ){
+          alert('사진용량은 1회 20MB미만, 단일파일 10MB미만으로 업로드해주세요!');
+        }else{
+          sendFile(files[i], this);
+        }
+     }
+    }
+   }
+  });
+
+  function sendFile(file, el) {
+    var data = new FormData();
+    data.append('file', file);
+    $.ajax({
+        //서버에 보낼 데이터
+        data: data,
+        //서버로부터 받을 데이터 타입
+        dataType: 'json',
+        type: "POST",
+        url: '{{route("infoimages.store")}}',
+        cache: false,
+        contentType: false,
+        processData: false,
+        async:false,
+        success: function(data) {
+            $('#content').summernote('editor.insertImage', '/images/infos/tmp/'+data.name);
+        },
+        error: function(data){
+          alert('파일 또는 파일용량을 확인해주세요');
+        },
+    });
+  }
+</script>
+
+
+
+[Controller]
+public function store(Request $request){
+  $file = $request->file('file');
+  $uploaded_file_path='';
+        if($file!=null) {
+          $destinationPath = 'images/infos/tmp';
+          //파일 저장이름 설정
+          date_default_timezone_set("Asia/Seoul");
+          $name = auth()->user()->email . date("YmdHis") . '_' . rand(1,100) . '.' . $file->getClientOriginalExtension();
+          $uploaded=$file->move($destinationPath, $name);
+          $uploaded_file_path= $uploaded->getPathName();
+
+          $response = array(
+            'status' => 'success',
+            'data' => $uploaded_file_path,
+            'name' => $name,
+          );
+        }else{
+            $response = array(
+                'status' => 'error',
+                'data' => $uploaded_file_path,
+            );
+        }
+  return json_encode($response);
+}
+
