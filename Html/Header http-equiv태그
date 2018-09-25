@@ -1,0 +1,15 @@
+1]http-equiv 사용 방법 및 차이점 보기
+
+이 태그는 다양한 형태가 존재하는데 아래와 같이 사용된다.
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+
+이렇게 메타태그에 등록하면 IE 9에서의 렌더링이 호환성보기를 무시하게됩니다. 참고로, 다음과 같이 세미콜론을 사용하여 여러개를 한번에 등록할 수도 있습니다.
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" />
+
+더 간편한 방법으로 아래처럼 사용하는 경우 모든 IE 브라우저에 호환성보기를 무시해줍니다.
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+아래 방법은 가장 많이 사용되는 방법으로 뒤에 Chrome=1을 추가해줍니다. 이 경우 Chromeframe을 사용하는 유저에게 렌더링합니다.
+<meta http-equiv="X-UA-Compatible" content="IE=Edge; chrome=1" />
+
+
