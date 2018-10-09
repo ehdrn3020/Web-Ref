@@ -1,0 +1,44 @@
+1.저장소만들기
+-프로젝트 파일을 만듭시다. 
+mkdir gitfth
+-프로젝트 디렉토리로 들어갑니다. 
+cd gitfth
+-현재 디렉토리를 git의 (버전) 저장소로 만듭니다. 
+git init
+
+
+2.파일등록
+-파일을 생성합니다. 
+vim f1.txt
+-git이 파일을 추적하도록 명령합니다. 
+git add f1.txt
+-프로젝트 폴더의 상태를 확인합니다. 
+git status
+-버전멘트를 작성합니다.
+git commit
+*git은 commit 전에 add를 꼭해야 합니다. 그 이유는 선택적으로 파일을 버전에 포함시키기 위해서 입니다. stage area
+
+
+3.버전만들기
+git config --global user.name dgKang
+git config --global user.email dgKang@github.com
+git commit
+-확인
+git log
+
+
+4.변경사항확인
+-로그에서 출력되는 버전 간의 차이점을 출력하고 싶을 때 
+git log -p 
+-버전 간의 차이점을 비교할 때
+git diff 버전id..버전id2
+-git add하기 전과 add한 후의 파일 내용을 비교할 때 
+git diff
+
+
+5.이전버전으로 돌아가기
+-아래 명령은 버전 id로 돌아가는 명령입니다. 
+git reset --hard "버전 id" 
+-버전 id의 커밋을 취소한 내용을 새로운 버전으로 만드는 명령
+git revert "버전 id"
+*reset은 돌아가기, revert는 현재버전에 새로운버전을 이전버전으로
