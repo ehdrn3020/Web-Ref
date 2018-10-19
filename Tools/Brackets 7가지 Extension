@@ -1,0 +1,21 @@
+
+1. Autoprefixer
+크로스브라우징 : 편집 - Auto prefix selection
+
+2. Beautify
+줄맞춤 : 블록 & 우클릭
+
+3.Brackets icons
+파일을 구별가능한 아이콘으로 나타냄
+
+4.Brackets snippets (by edc)
+반복된 코드를 단축기로 지정
+
+5.Emmet
+코드 자동완성 기능
+
+6.minimap (Senko Anton)
+코드 맵기능
+
+7.rightclickextend
+우클릭기능
