@@ -37,7 +37,7 @@ composer global require "laravel/installer"
 
 
 새로운 라라벨 프로젝트 생성
-composer create-project laravel/laravel myapp --prefer-dist --verbose
+composer create-project laravel/laravel myapp 5.7.* --prefer-dist --verbose
 
 컴포저 에러시 초기화
 composer install
