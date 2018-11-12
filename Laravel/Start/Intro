@@ -20,6 +20,22 @@ tokenizer
 
 rpm -qa 'php*'
 
+
+3.컴포저설치
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+composer --version
+
+php설정파일에러시
+allow_url_fopen = On
+
+
+
+4.라라벨 인스톨러로 사용하기
+먼저, 라라벨 인스톨러를 컴포저를 사용하여 다운로드
+composer global require "laravel/installer"
+
+
 새로운 라라벨 프로젝트 생성
 composer create-project laravel/laravel myapp --prefer-dist --verbose
 
