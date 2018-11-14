@@ -3,6 +3,7 @@ php artisan serve
 php artisan serve --host=0.0.0.0 --port=8001
 
 
+*윈도우 설치 https://l5.appkr.kr/lessons/02-install-on-windows.html
 2. 라라벨 설치시 필요 패키지
 패키지 설치
 sudo yum install php php-mysql php-sqlite3 php-mbstring php-xml
