@@ -31,3 +31,10 @@ b) getSliderTooCloseToBeginning / getSliderTooCloseToEnding
 c) getStart() / getFinish() 
 1 2 ... 7 8 9 10 11 ... 51 52
 위의 페이지네이션에서 1,2 / 51,52 부분에 해당
+
+d)public function get($onEachSide = 2) 함수
+return $this->getSmallSlider();
+일정 페이지 갯수가 차기 전에는 위 함수로 나타냄.
+return $this->getUrlSlider($onEachSide);
+일정 페이지가 차면 위의 함수.
+
