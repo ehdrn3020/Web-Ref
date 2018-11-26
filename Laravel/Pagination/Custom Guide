@@ -1,0 +1,33 @@
+1. 뷰파일들을 vendor:publish 명령어를 사용하여 resources/views/vendor 디렉토리로 내보내는 것입니다:
+
+php artisan vendor:publish --tag=laravel-pagination
+
+이 명령어는 뷰파일들을 resources/views/vendor/pagination로 옮겨넣습니다. 
+이 디렉토리 안에 있는 default.blade.php 파일은 페이지네이션 기본 뷰와 일치합니다. 
+페이지네이션 HTML을 수정하려면 이 파일을 편집하면 됩니다.
+
+
+
+
+2. resources/views/vendor/pagination/default.blade.php 수정하기
+
+a) 관련 함수 참조 : https://laravel.kr/docs/5.5/pagination 맨밑
+
+b) 페이지 이동 
+첫페이지 :     {{ $paginator->url(1) }}
+마지막페이지 :  {{ $paginator->url($paginator->lastPage()) }}
+
+
+
+
+3. vendor파일의 UrlWindow.php 커스터마이징하기
+
+a) public static function make(PaginatorContract $paginator, $onEachSide = 2)
+onEachSide를 변경하여 현재 page의 앞뒤 숫자의 갯수를 조정.
+
+b) getSliderTooCloseToBeginning / getSliderTooCloseToEnding
+첫시작과 맨끝이 currentpage일 때 페이지네이션의 갯수를 정해준다. 
+
+c) getStart() / getFinish() 
+1 2 ... 7 8 9 10 11 ... 51 52
+위의 페이지네이션에서 1,2 / 51,52 부분에 해당
