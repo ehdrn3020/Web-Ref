@@ -1,1 +1,5 @@
+/*jwt auth
 https://blog.pusher.com/build-rest-api-laravel-api-resources/
+
+/* passport
+https://gdpark.tistory.com/142
