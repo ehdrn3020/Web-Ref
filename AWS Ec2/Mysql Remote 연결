@@ -1,0 +1,9 @@
+1. AWS에서의 보안그룹에서 인바운드 규칙설정으로 3306포트를 열어준다.
+[에러문구]
+Database connection failed: Error: connect ETIMEDOUT
+....
+
+2. /etc/mysql/mysql.conf.d/mysqld.cnf 파일에서 bind-adrress를 0.0.0.0으로 설정하여 열어준다.
+[에러문구]
+Database connection failed: Error: connect ECONNREFUSED
+....
