@@ -10,7 +10,7 @@ $php artisan make:migration create_authors_table --create=authors
 -Schema::create(string $table, \Closure $callback)  : 테이블 생성
 -Schema::dorpIfExists(string $table)                : 테이블 삭제
 -Schema::table(string $table, \Closure $callback)    : 테이블 수정
-Ref: https::/laravle.com/docs/migrations
+Ref: https::/laravel.com/docs/migrations
 
 7.2 마이그레이션 실행
 $php artisan migrate
